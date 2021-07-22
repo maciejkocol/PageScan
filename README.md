@@ -1,0 +1,61 @@
+# Automated page scan in Java with Cucumber and Selenium WebDriver #
+
+This project browses a selection of pages and validates the following:
+- There are no console errors on page loads
+- The response code from the page (200, 302, 404, etc.)
+- All links on the page go to another live (non 4xx) page
+
+Test scenarios are defined in the feature files at ./src/test/resources/com/automatedtest/scan.
+
+Installation
+------------
+
+### Docker
+- Linux install: http://docs.docker.com/linux/step_one/
+- Mac/Windows install: https://www.docker.com/products/docker-desktop
+
+### Setup
+```bash
+    # Clone this repo
+    https://github.com/maciejkocol/pagescan
+    
+    # Change directory into the cloned repo
+    cd pagescan
+    
+    # Spool up the environment
+    docker-compose up -d
+
+    # Access project in browser with VSCode
+    open http://localhost:8080
+    
+    # to Shutdown the environment
+    docker-compose down
+```
+
+## Run tests ##
+
+### Install dependencies
+
+```console
+mvn clean install
+```
+
+### Execute scripts
+```console
+mvn test
+```
+
+To run tests in Chrome or Firefox, add `-Dbrowser={browser}` where `{browser}` is either `chrome` or `firefox`. 
+To run tests in headless mode, add `-Dheadless={headless}` where `{headless}` is either `true` or `false`.
+
+Sample test run:
+
+```console
+mvn test -Dbrowser=chrome -Dheadless=true
+```
+
+
+## Results ##
+
+Obtain detailed html test report at `./target/scan-result.html`
+
