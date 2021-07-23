@@ -7,6 +7,11 @@ This project browses a selection of pages and validates the following:
 
 Test scenarios are defined in the feature files at ./src/test/resources/com/automatedtest/scan.
 
+## Included in the container
+
+- VSCode
+- VSCode extension for Cucumber (Gherkin)
+
 Installation
 ------------
 
@@ -26,6 +31,7 @@ Installation
     docker-compose up -d
 
     # Access project in browser with VSCode
+    # If prompted for password, enter 'assess'
     open http://localhost:8080
     
     # to Shutdown the environment
@@ -34,19 +40,13 @@ Installation
 
 ## Run tests ##
 
-### Install dependencies
+To run tests inside the container, add `-Dheadless=true`.
 
 ```console
-mvn clean install
-```
-
-### Execute scripts
-```console
-mvn test
+mvn test -Dheadless=true
 ```
 
 To run tests in Chrome or Firefox, add `-Dbrowser={browser}` where `{browser}` is either `chrome` or `firefox`. 
-To run tests in headless mode, add `-Dheadless={headless}` where `{headless}` is either `true` or `false`.
 
 Sample test run:
 
@@ -54,8 +54,9 @@ Sample test run:
 mvn test -Dbrowser=chrome -Dheadless=true
 ```
 
+Scripts can be accessed locally at `~/automation-home/page-scan/`
 
 ## Results ##
 
-Obtain detailed html test report at `./target/scan-result.html`
+Obtain detailed html report at `~/automation-home/page-scan/target/scan-result.html`
 

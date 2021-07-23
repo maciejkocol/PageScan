@@ -24,24 +24,36 @@ public class Setup {
         switch (browser) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("['start-maximized']");
-                if (headless) {
-                    chromeOptions.addArguments("--headless");
-                    chromeOptions.addArguments("--no-sandbox");
-                    chromeOptions.addArguments("--disable-gpu");
-                    chromeOptions.addArguments("--disable-dev-shm-usage");
-                }
+                chromeOptions.addArguments("--headless");
+                chromeOptions.addArguments("--no-sandbox");
+                chromeOptions.addArguments("--disable-dev-shm-usage");
+                chromeOptions.addArguments("disable-infobars");
+                chromeOptions.addArguments("--disable-extensions");
+                chromeOptions.addArguments("--disable-gpu");
+                chromeOptions.addArguments("window-size=1024,768");
                 WebDriverManager.chromedriver().setup();
+                System.setProperty("webdriver.chrome.driver",
+                        WebDriverManager.chromedriver().getDownloadedDriverPath());
+                System.setProperty("webdriver.chrome.args", "--disable-logging");
+                System.setProperty("webdriver.chrome.silentOutput", "true");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
-                if (headless) {
-                    firefoxOptions.addArguments("--headless");
-                }
-                WebDriverManager.firefoxdriver().setup();
+                firefoxOptions.addArguments("--headless");
+                firefoxOptions.addArguments("--no-sandbox");
+                firefoxOptions.addArguments("--disable-dev-shm-usage");
+                firefoxOptions.addArguments("disable-infobars");
+                firefoxOptions.addArguments("--disable-extensions");
+                firefoxOptions.addArguments("--disable-gpu");
+                firefoxOptions.addArguments("--width=1920");
+                firefoxOptions.addArguments("--height=1080");
+                WebDriverManager.chromedriver().setup();
+                System.setProperty("webdriver.gecko.driver",
+                        WebDriverManager.firefoxdriver().getDownloadedDriverPath());
+                System.setProperty("webdriver.gecko.args", "--disable-logging");
+                System.setProperty("webdriver.gecko.silentOutput", "true");
                 driver = new FirefoxDriver(firefoxOptions);
-                //driver.manage().window().maximize();
                 break;
             default:
                 throw new IllegalArgumentException("Browser \"" + browser + "\" isn't supported.");
