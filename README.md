@@ -31,7 +31,6 @@ Installation
     docker-compose up -d
 
     # Access project in browser with VSCode
-    # If prompted for password, enter 'assess'
     open http://localhost:8080
     
     # to Shutdown the environment
@@ -39,7 +38,6 @@ Installation
 ```
 
 ## Run tests ##
-
 To run tests inside the container, use a VS Code command line interface, such as `Terminal`. 
 
 To specify browser type, add `-Dbrowser={browser}` where `{browser}` is either `chrome` or `firefox`. 
