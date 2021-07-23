@@ -9,12 +9,16 @@ ENV MAVEN_VERSION=3.8.1 \
   CSVER=3.11.0 \
   PATH=$MAVEN_HOME/bin:/usr/local/bin:$PATH
 
+ARG FIREFOX_VERSION=90.0.2
+
 COPY docker-entrypoint.sh /usr/local/bin/
 
 # Packages
 USER root
 RUN apt-get update \
   && apt-get install -y openjdk-11-jdk \
+  firefox \
+  xvfb \
   curl \
   dumb-init \
   && curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - \
@@ -46,6 +50,16 @@ RUN cd /tmp && \
   curl -SsL https://github.com/cdr/code-server/releases/download/v${CSVER}/code-server-${CSVER}-linux-amd64.tar.gz | tar -xzf - \
   && mv code-server* /usr/local/lib/code-server \
   && ln -s /usr/local/lib/code-server/code-server /usr/local/bin/code-server
+
+# Install firefox
+RUN [ -e /usr/bin/firefox ] && rm /usr/bin/firefox
+RUN wget --no-verbose -O /tmp/firefox.tar.bz2 https://download-installer.cdn.mozilla.net/pub/firefox/releases/$FIREFOX_VERSION/linux-x86_64/en-US/firefox-$FIREFOX_VERSION.tar.bz2 \
+  && apt-get install -q -y libdbus-glib-1-2 \
+  && bunzip2 /tmp/firefox.tar.bz2 \
+  && tar xvf /tmp/firefox.tar \
+  && mv /firefox /opt/firefox-$FIREFOX_VERSION \
+  && chmod -R +x /opt/firefox-$FIREFOX_VERSION \
+  && ln -s /opt/firefox-$FIREFOX_VERSION/firefox /usr/bin/firefox
 
 USER seluser
 EXPOSE 8080
