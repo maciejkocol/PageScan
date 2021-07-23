@@ -35,7 +35,7 @@ RUN sed -i "s/# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen \
   && echo "seluser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/nopasswd
 
 # Install fixuid
-RUN curl -SsL https://github.com/boxboat/fixuid/releases/download/v0.5.1/fixuid-0.5.1-linux-amd64.tar.gz | tar -C /usr/local/bin -xzf - \
+RUN curl -SsL https://github.com/boxboat/fixuid/releases/download/v0.4/fixuid-0.4-linux-amd64.tar.gz | tar -C /usr/local/bin -xzf - \
   && chown root:root /usr/local/bin/fixuid \
   && chmod 4755 /usr/local/bin/fixuid \
   && mkdir -p /etc/fixuid \
@@ -48,11 +48,8 @@ RUN cd /tmp && \
   && ln -s /usr/local/lib/code-server/code-server /usr/local/bin/code-server
 
 USER seluser
-
-COPY --chown=seluser . /home/seluser
-
 EXPOSE 8080
-WORKDIR /home/seluser
+WORKDIR /home/seluser/page-scan
 
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["dumb-init", "fixuid", "-q", "/usr/local/bin/code-server", "--host", "0.0.0.0", "/home/seluser"]
+CMD ["dumb-init", "fixuid", "-q", "/usr/local/bin/code-server", "--host", "0.0.0.0", "/home/seluser/page-scan"]
