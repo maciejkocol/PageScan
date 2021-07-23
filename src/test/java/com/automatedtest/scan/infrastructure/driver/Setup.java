@@ -47,7 +47,7 @@ public class Setup {
                 firefoxOptions.addArguments("--disable-gpu");
                 firefoxOptions.addArguments("--width=1920");
                 firefoxOptions.addArguments("--height=1080");
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.firefoxdriver().setup();
                 System.setProperty("webdriver.gecko.driver",
                         WebDriverManager.firefoxdriver().getDownloadedDriverPath());
                 System.setProperty("webdriver.gecko.args", "--disable-logging");
