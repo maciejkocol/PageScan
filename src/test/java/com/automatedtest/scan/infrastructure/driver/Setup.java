@@ -13,10 +13,9 @@ public class Setup {
     public static WebDriver driver;
 
     @Before
-    public void setWebDriver() throws Exception {
+    public void setWebDriver() {
 
         String browser = System.getProperty("browser");
-        boolean headless = Boolean.parseBoolean(System.getProperty("headless"));
 
         if (browser == null) {
             browser = "chrome";

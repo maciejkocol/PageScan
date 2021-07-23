@@ -40,18 +40,14 @@ Installation
 
 ## Run tests ##
 
-To run tests inside the container, add `-Dheadless=true`.
+To run tests inside the container, use a VS Code command line interface, such as `Terminal`. 
 
-```console
-mvn test -Dheadless=true
-```
-
-To run tests in Chrome or Firefox, add `-Dbrowser={browser}` where `{browser}` is either `chrome` or `firefox`. 
+To specify browser type, add `-Dbrowser={browser}` where `{browser}` is either `chrome` or `firefox`. 
 
 Sample test run:
 
 ```console
-mvn test -Dbrowser=chrome -Dheadless=true
+mvn test -Dbrowser=chrome
 ```
 
 Scripts can be accessed locally at `~/automation-home/page-scan/`
