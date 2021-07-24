@@ -10,7 +10,6 @@ Test scenarios are defined in the feature files at ./src/test/resources/com/auto
 ## Included in the container
 
 - VSCode
-- VSCode extension for Cucumber (Gherkin)
 
 Installation
 ------------
