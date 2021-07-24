@@ -30,6 +30,7 @@ Installation
     docker-compose up -d
 
     # Access project in browser with VSCode
+    # Enter password at prompt: 'assess'
     open http://localhost:8080
     
     # to Shutdown the environment
