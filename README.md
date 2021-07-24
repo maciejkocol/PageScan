@@ -38,7 +38,7 @@ Installation
 ```
 
 ## Run tests ##
-To run tests inside the container, use a VS Code command line interface, such as `Terminal`. 
+To run tests inside the container, use a VSCode command line interface, such as `Terminal`. 
 
 To specify browser type, add `-Dbrowser={browser}` where `{browser}` is either `chrome` or `firefox`. 
 
